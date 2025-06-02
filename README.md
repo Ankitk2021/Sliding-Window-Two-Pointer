@@ -1,2 +1,2 @@
-# Sliding-Window-Two-Pointer
+# Sliding Window & Two Pointer
 Problem Solutions.
