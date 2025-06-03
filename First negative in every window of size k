@@ -33,8 +33,56 @@
                 fn=0;
             }
         }
-        
         ans.push_back(fn);
+        return ans;      
+    }
+
+2. Better
+
+    vector<int> firstNegInt(vector<int>& arr, int k) {
+        // write code here
+        
+        vector<int> ans;
+        
+        int i=0,j=0;
+        int n = arr.size();
+        
+        queue<int> list;
+        
+        while(j<n){
+            if((j-i+1)<k){
+                
+                if(arr[j] < 0){
+                   list.push(arr[j]);
+                }
+                j++;
+                
+            }else if((j-i+1)==k){
+                
+                if(arr[j] < 0){
+                   list.push(arr[j]);
+                }
+               
+                if(list.size() > 0){
+                    int a = list.front();
+                    ans.push_back(a);
+                }else{
+                   ans.push_back(0); 
+                }
+                
+                //slide the window
+                
+                if(list.size() > 0){
+                    int a = list.front();
+                   
+                    if(a==arr[i]){
+                        list.pop();
+                    }
+                }
+                j++;
+                i++;
+            }
+        }
         return ans;
         
     }
