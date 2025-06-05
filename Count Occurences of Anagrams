@@ -1,0 +1,60 @@
+    int search(string &pat, string &txt) {
+
+        // code here
+        int ans = 0;
+        int n = txt.size();
+        
+        map<char,int> mpp;
+        
+        //add pat char to mpp
+        
+        for(char ch : pat){
+            mpp[ch]++;
+        }
+        
+        int count = mpp.size();
+        
+        int i = 0, j = 0;
+        int k = pat.size();
+        
+        while(j < n){
+            
+            char ch = txt[j];
+            
+            if((j-i+1)<k){
+                
+              if(mpp.find(ch) != mpp.end()){
+                  mpp[ch]--;
+                  if(mpp[ch]==0) count--;
+              }
+              
+             
+              j++;
+              
+            }else if((j-i+1)==k){
+                
+              if(mpp.find(ch) != mpp.end()){
+                  mpp[ch]--;
+                  if(mpp[ch]==0) count--;
+              }
+              
+              if(count==0){
+                  ans++;
+              }
+              //slide the window.
+             char chi = txt[i];
+             
+             if(mpp.find(chi) != mpp.end()){
+                  
+              mpp[chi]++;
+              if(mpp[chi] == 1) count++;
+             }
+             
+              i++;
+              j++;
+            }
+        }
+        
+        return ans;
+        
+    }
