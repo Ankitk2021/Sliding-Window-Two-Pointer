@@ -1,0 +1,34 @@
+#Coding Ninjas
+int longestSubarrayWithSumK(vector<int> a, long long k) {
+    // Write your code here
+    long long sum = 0;
+    int wdo = 0,i = 0,j = 0;
+    int n = a.size();
+
+    while(j < n ){
+        sum += a[j];
+
+        if(sum < k){
+            j++;
+        }else if(sum==k){
+
+            wdo = max(wdo,(j-i+1));
+            j++;
+
+        }else{
+
+            while(sum > k){
+                sum -= a[i];
+                i++;
+            }
+
+            //Re check.
+            if(sum==k){
+             wdo = max(wdo,(j-i+1));
+            } 
+            j++;  
+        }
+    }
+
+    return wdo;
+}
